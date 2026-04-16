@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -20,6 +21,13 @@ export function AuthEntryCard({ mode }: { mode: "login" | "signup" }) {
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
       <div className="panel-surface w-full max-w-[760px] rounded-[40px] p-8">
+        <div className="mb-6 flex items-center gap-3">
+          <Image src="/logo-mark.svg" alt="LumaBoard" width={44} height={44} priority />
+          <div>
+            <div className="text-sm font-semibold tracking-[0.04em] text-[var(--text-primary)]">LumaBoard</div>
+            <div className="text-xs uppercase tracking-[0.18em] text-[var(--text-muted)]">Personalized dashboard</div>
+          </div>
+        </div>
         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
           {isSignup ? "Create profile" : "Welcome back"}
         </div>

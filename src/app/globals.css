@@ -61,6 +61,10 @@ body {
     radial-gradient(circle at top left, rgba(147, 171, 239, 0.18), transparent 28%),
     radial-gradient(circle at top right, rgba(239, 141, 141, 0.14), transparent 22%),
     linear-gradient(180deg, var(--app-bg-soft), var(--app-bg));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center top;
   color: var(--text-primary);
   font-family: var(--font-body), sans-serif;
 }

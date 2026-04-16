@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "LumaBoard",
   description:
     "A premium personalized content dashboard for news, recommendations, and social updates.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
