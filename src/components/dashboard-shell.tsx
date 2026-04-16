@@ -6,7 +6,6 @@ import {
   Home01Icon,
   Logout01Icon,
   Menu01Icon,
-  NotificationIcon,
   Moon01Icon,
   SearchIcon,
   Settings01Icon,
@@ -54,7 +53,7 @@ export function DashboardShell({
 }: DashboardShellProps) {
   return (
     <div className="min-h-screen px-3 py-4 md:px-5 lg:px-6">
-      <div className="mx-auto flex min-h-[calc(100vh-2rem)] max-w-400 items-start gap-4">
+      <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full items-start gap-4">
         <aside className="panel-surface sticky top-4 hidden h-[calc(100vh-2rem)] w-21.5 shrink-0 flex-col justify-between rounded-[36px] px-3 py-5 lg:flex">
           <div className="flex flex-col items-center gap-4">
             <div className="mb-2 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl">
@@ -149,12 +148,7 @@ export function DashboardShell({
                     className="w-full bg-transparent text-sm outline-none placeholder:text-(--text-muted)"
                   />
                 </label>
-                <button type="button" className="pill-button hidden h-12 w-12 items-center justify-center md:flex">
-                  <HugeiconsIcon icon={NotificationIcon} size={30} strokeWidth={2} />
-                </button>
-                <button type="button" className="pill-button hidden h-12 w-12 items-center justify-center md:flex">
-                  <HugeiconsIcon icon={Settings01Icon} size={30} strokeWidth={2} />
-                </button>
+
                 <button
                   type="button"
                   onClick={onSignOut}

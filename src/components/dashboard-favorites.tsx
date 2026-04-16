@@ -16,9 +16,9 @@ export function DashboardFavorites() {
   return (
     <section className="soft-card rounded-[34px] p-6">
       <SectionHeading
-        eyebrow="Favorites"
-        title="Your saved collection"
-        description="A dedicated board for the stories, movies, albums, and social moments worth revisiting."
+        eyebrow="Your Vault"
+        title="Saved Collections"
+        description="A personal archive of stories, films, music, and highlights worth keeping."
       />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {favoriteItems.length ? (

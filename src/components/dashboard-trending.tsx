@@ -18,9 +18,9 @@ export function DashboardTrending() {
   return (
     <section className="soft-card rounded-[34px] p-6">
       <SectionHeading
-        eyebrow="Trending board"
-        title="Top cross-source highlights"
-        description="A premium collection of the strongest signals based on your selected content categories."
+        eyebrow="Market Pulse"
+        title="Top Highlights"
+        description="A curated collection of the strongest signals and discoveries crossing your network."
       />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {trendingQuery.data?.map((item) => (

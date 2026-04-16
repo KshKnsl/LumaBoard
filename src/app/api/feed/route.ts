@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAggregatedFeed } from "@/lib/providers";
+import { fetchAggregatedFeed } from "../aggregate";
 import type { ContentItem, FeedResponse, UserCategory } from "@/types/content";
 
 function paginateItems(items: ContentItem[], page = 1, pageSize = 6): FeedResponse {
@@ -26,11 +26,13 @@ export async function GET(request: NextRequest) {
     .split(",")
     .filter(Boolean);
 
-  const items = await getAggregatedFeed({
+  const origin = request.nextUrl.origin;
+  const items = await fetchAggregatedFeed({
     categories,
     query,
     hashtags,
     profiles,
+    origin,
   });
 
   return NextResponse.json(paginateItems(items, page, 6));

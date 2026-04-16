@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTrending } from "@/lib/providers";
+import { fetchAggregatedFeed } from "../aggregate";
 import type { UserCategory } from "@/types/content";
 
 export async function GET(request: NextRequest) {
@@ -13,14 +13,16 @@ export async function GET(request: NextRequest) {
     .split(",")
     .filter(Boolean);
 
+  const origin = request.nextUrl.origin;
+
   try {
-    return NextResponse.json(
-      await getTrending({
+      const items = await fetchAggregatedFeed({
         categories,
         hashtags,
         profiles,
-      }),
-    );
+        origin,
+      });
+      return NextResponse.json(items.slice(0, 6));
   } catch {
     return NextResponse.json(
       { error: "Unable to load live trending data at the moment." },

@@ -10,10 +10,10 @@ export async function GET(request: NextRequest) {
   const query = params.get("query") ?? undefined;
 
   const apiKey = process.env.NEWS_API_KEY;
-  
+
   const category = categories[0] ?? "technology";
   const url = new URL("https://newsapi.org/v2/top-headlines");
-  url.searchParams.set("apiKey", apiKey??"");
+  url.searchParams.set("apiKey", apiKey ?? "");
   url.searchParams.set("pageSize", "8");
   url.searchParams.set("category", category);
   if (query) url.searchParams.set("q", query);
