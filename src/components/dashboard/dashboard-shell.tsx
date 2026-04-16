@@ -1,11 +1,16 @@
 "use client";
 
 import {
+  ChartUpIcon,
+  FavouriteIcon,
   Home01Icon,
+  Logout01Icon,
+  Menu01Icon,
   NotificationIcon,
+  Moon01Icon,
   SearchIcon,
   Settings01Icon,
-  UserIcon,
+  Sun01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
@@ -15,8 +20,8 @@ import type { FeedSection, ThemeMode, UserProfile } from "@/types/content";
 
 const items: { id: FeedSection; label: string; icon: unknown }[] = [
   { id: "feed", label: "Feed", icon: Home01Icon },
-  { id: "trending", label: "Trending", icon: SearchIcon },
-  { id: "favorites", label: "Favorites", icon: UserIcon },
+  { id: "trending", label: "Trending", icon: ChartUpIcon },
+  { id: "favorites", label: "Favorites", icon: FavouriteIcon },
   { id: "settings", label: "Settings", icon: Settings01Icon },
 ];
 
@@ -83,8 +88,8 @@ export function DashboardShell({
             aria-label="Toggle theme"
           >
             <HugeiconsIcon
-              icon={theme === "light" ? NotificationIcon : Home01Icon}
-              size={30}
+              icon={theme === "light" ? Moon01Icon : Sun01Icon}
+              size={28}
               strokeWidth={2}
             />
           </button>
@@ -100,7 +105,7 @@ export function DashboardShell({
                   className="pill-button flex h-12 w-12 items-center justify-center"
                   aria-label="Toggle sidebar"
                 >
-                  <HugeiconsIcon icon={Home01Icon} size={30} strokeWidth={2} />
+                  <HugeiconsIcon icon={Menu01Icon} size={30} strokeWidth={2} />
                 </button>
                 <button
                   type="button"
@@ -109,8 +114,8 @@ export function DashboardShell({
                   aria-label="Toggle theme"
                 >
                   <HugeiconsIcon
-                    icon={theme === "light" ? NotificationIcon : Home01Icon}
-                    size={30}
+                    icon={theme === "light" ? Moon01Icon : Sun01Icon}
+                    size={28}
                     strokeWidth={2}
                   />
                 </button>
@@ -153,8 +158,9 @@ export function DashboardShell({
                 <button
                   type="button"
                   onClick={onSignOut}
-                  className="pill-button hidden px-4 py-2 text-sm font-semibold md:flex"
+                  className="pill-button hidden items-center gap-2 px-4 py-2 text-sm font-semibold md:flex"
                 >
+                  <HugeiconsIcon icon={Logout01Icon} size={20} strokeWidth={2} />
                   Logout
                 </button>
                 <div className="flex items-center gap-3 rounded-full bg-(--surface-secondary) px-3 py-2">

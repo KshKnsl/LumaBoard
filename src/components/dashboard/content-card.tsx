@@ -4,10 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  NotificationIcon,
-  SearchIcon,
-  Settings01Icon,
-  UserIcon,
+  ArrowUpRight01Icon,
+  FavouriteIcon,
+  MusicNote01Icon,
+  News01Icon,
+  PlayIcon,
 } from "@hugeicons/core-free-icons";
 import { formatRelativeDate, cn } from "@/lib/utils";
 import type { ContentItem } from "@/types/content";
@@ -78,7 +79,7 @@ export function ContentCard({
               : "border-(--border-soft) bg-(--surface-secondary) text-(--text-secondary)",
           )}
         >
-          <HugeiconsIcon icon={UserIcon} size={28} strokeWidth={isFavorite ? 2.2 : 1.7} />
+          <HugeiconsIcon icon={FavouriteIcon} size={28} strokeWidth={isFavorite ? 2.2 : 1.7} />
         </button>
       </div>
 
@@ -100,7 +101,11 @@ export function ContentCard({
 
       <div className="mt-5 flex items-center justify-between text-sm text-(--text-muted)">
         <div className="flex items-center gap-2">
-          <HugeiconsIcon icon={NotificationIcon} size={24} strokeWidth={1.9} />
+          <HugeiconsIcon
+            icon={item.type === "music" ? MusicNote01Icon : News01Icon}
+            size={24}
+            strokeWidth={1.9}
+          />
           <span>{item.source}</span>
         </div>
         <span>{formatRelativeDate(item.publishedAt)}</span>
@@ -117,7 +122,7 @@ export function ContentCard({
           className="inline-flex items-center gap-2 rounded-full border border-(--border-soft) bg-(--surface-secondary) px-4 py-2 text-sm font-semibold text-foreground transition hover:border-(--border-strong) hover:bg-(--surface-elevated)"
         >
           <HugeiconsIcon
-            icon={item.type === "music" ? Settings01Icon : SearchIcon}
+            icon={item.type === "music" ? PlayIcon : ArrowUpRight01Icon}
             size={22}
             strokeWidth={1.9}
           />

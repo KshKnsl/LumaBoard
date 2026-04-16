@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, Manrope } from "next/font/google";
 import "./globals.css";
-import { StoreProvider } from "@/store/provider";
+import { AppProviders } from "@/app/providers";
 
 const headingFont = Manrope({
   variable: "--font-heading",
@@ -38,7 +38,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <StoreProvider>{children}</StoreProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

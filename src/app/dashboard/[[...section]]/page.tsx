@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { signOut } from "@/store/slices/auth-slice";
 import { setFeedPage } from "@/store/slices/feed-slice";
 import { setTheme } from "@/store/slices/preferences-slice";
-import { setActiveSection, setSearchQuery, toggleSidebar } from "@/store/slices/ui-slice";
 import type { FeedSection } from "@/types/content";
 
 function sectionToPath(section: FeedSection) {
@@ -41,20 +40,18 @@ export default function DashboardSectionPage() {
 
   const { isAuthenticated, profile } = useAppSelector((state) => state.auth);
   const preferences = useAppSelector((state) => state.preferences);
-  const ui = useAppSelector((state) => state.ui);
 
-  const [searchInput, setSearchInput] = useState(ui.searchQuery);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const deferredSearch = useDeferredValue(searchInput.trim());
 
   const activeSection = useMemo(() => pathToSection(pathname), [pathname]);
 
   useEffect(() => {
-    dispatch(setActiveSection(activeSection));
-  }, [activeSection, dispatch]);
-
-  useEffect(() => {
     const timeout = window.setTimeout(() => {
-      dispatch(setSearchQuery(deferredSearch));
+      setSearchQuery(deferredSearch);
       dispatch(setFeedPage(1));
     }, 250);
 
@@ -68,10 +65,7 @@ export default function DashboardSectionPage() {
   return (
     <DashboardShell
       activeSection={activeSection}
-      onSectionChange={(section) => {
-        dispatch(setActiveSection(section));
-        router.push(sectionToPath(section));
-      }}
+      onSectionChange={(section) => router.push(sectionToPath(section))}
       onThemeToggle={() =>
         dispatch(setTheme(preferences.theme === "light" ? "dark" : "light"))
       }
@@ -80,10 +74,15 @@ export default function DashboardSectionPage() {
       profile={profile}
       searchValue={searchInput}
       onSearchChange={setSearchInput}
-      onMenuToggle={() => dispatch(toggleSidebar())}
-      sidebarOpen={ui.isSidebarOpen}
+      onMenuToggle={() => setSidebarOpen((current) => !current)}
+      sidebarOpen={sidebarOpen}
     >
-      <DashboardClient activeSection={activeSection} />
+      <DashboardClient
+        activeSection={activeSection}
+        searchQuery={searchQuery}
+        isSettingsOpen={isSettingsOpen}
+        onToggleSettings={() => setIsSettingsOpen((current) => !current)}
+      />
     </DashboardShell>
   );
 }
