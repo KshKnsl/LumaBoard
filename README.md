@@ -10,6 +10,8 @@ LumaBoard is a personalized content dashboard built with Next.js, Redux, and Tai
 
 ## What I Built
 
+![alt text](image.png)
+
 **1. Core Features**
 - **Personalized Feed:** Users can pick their favorite categories in the settings. These preferences are saved automatically in local storage.
 - **Data APIs:** I hooked up NewsAPI for news and TMDB for movies. For the social feed, I built a reliable mock data integration to filter tags and profiles since real social APIs are heavily rate-limited.
