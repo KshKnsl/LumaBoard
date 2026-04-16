@@ -16,7 +16,7 @@ const bodyFont = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "LumaBoard | Personalized Content Dashboard",
+  title: "LumaBoard",
   description:
     "A premium personalized content dashboard for news, recommendations, and social updates.",
 };
