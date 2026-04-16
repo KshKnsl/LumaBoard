@@ -1,79 +1,68 @@
-# LumaBoard - Personalized Content Dashboard
-### SDE Intern - Frontend Development Assignment
+# LumaBoard
 
-LumaBoard is a strictly typed, highly polished, personalized content aggregation dashboard built as a solution for the SDE Frontend Assignment. Built on **Next.js (App Router)** and **TypeScript**, it unifies news pipelines, rich media recommendations, and social timelines into a singular, dynamic, and customizable user feed.
+LumaBoard is a personalized content dashboard built with Next.js, Redux, and Tailwind. It pulls in data from different places—like news, movies, and social media—and drops it all into one clean, customizable feed.
+
+## Links
+- **Live Demo:** https://luma-board.vercel.app/
+- **Repository:** https://github.com/KshKnsl/LumaBoard
 
 ---
 
-### Requirements
+## What I Built
 
 **1. Core Features**
-* **Personalized Content Feed & Preferences:** Users can configure content preferences (categories, social profiles) which are persisted natively inside browser storage and hydrated dynamically alongside Redux.
-* **Data Fetching:** 
-  * Integrates real external REST APIs: **NewsAPI** (News), and **TMDB** (Recommendations/Movies).
-  * Integrates a robust internal mock **Social Feed** data layer that correctly mimics a live ecosystem by filtering fake posts by hashtags and profiles.
-* **Interactive Content Cards:** Supported by manual/infinite pagination patterns.
+- **Personalized Feed:** Users can pick their favorite categories in the settings. These preferences are saved automatically in local storage.
+- **Data APIs:** I hooked up NewsAPI for news and TMDB for movies. For the social feed, I built a reliable mock data integration to filter tags and profiles since real social APIs are heavily rate-limited.
+- **Interactive Cards:** Feed items are displayed as styled cards with images, text, and CTAs. Infinite scrolling/pagination is working out of the box.
 
-**2. User Dashboard Layout**
-* **Main Layout:** Fully responsive dashboard matrix with a floating left sidebar panel (horizontal rail on mobile) and a sticky top header housing search schemas and profile integrations.
-* **Sections:** Distinctly structures a unified **Personalized Feed**, a smaller accelerated **Trending Highlights** window, and a pinned **Favorites Vault**.
+**2. Dashboard Layout**
+- Fully responsive design with a collapsible sidebar and a fixed top search area.
+- Three main sections: the **Unified Feed**, a **Trending** tab, and your **Favorites**.
 
-**3. Search Functionality**
-* **Debounced Search Bar:** Clean debounce logic hooked into RTK Query efficiently drives cross-source searches without exhausting API call limits.
+**3. Search**
+- Search is fully implemented across all data sources, using a debounced input to prevent spamming the APIs.
 
-**4. Advanced UI/UX Features**
-* **Drag-and-Drop:** Intuitive, physics-based reordering logic utilizing `@dnd-kit/core` enables absolute control over the feed layout.
-* **Dark Mode:** Deep CSS-variable integration natively powering seamless system Theme toggles.
-* **Animations:** Beautiful, modern layered mounting interactions powered by **Framer Motion`.
-* **PWA Integration:** Completely installable Progressive Web App utilizing Next.js layout metadata and offline Service Workers.
+**4. Advanced UI/UX**
+- **Drag-and-Drop:** You can easily drag and reorder cards in your feed (powered by `@dnd-kit/core`).
+- **Dark Mode:** Easily toggleable using native CSS variables.
+- **Animations:** Used Framer Motion for smooth page transitions and hover effects.
+- **Bonus:** Configured a Service Worker and manifest so it works natively as a PWA!
 
-**5. State Management & Logic Handling**
-* **Redux Toolkit & RTK Query:** Entire architectural networking logic relies exclusively on RTK Query for caching, request de-duplication, and paginated background fetching.
+**5. State Management**
+- **Redux Toolkit & RTK Query:** Handled all the global state, API fetching, and caching nicely so the UI doesn't stutter or double-fetch.
 
-**7. Bonus Features (Partially Completed)**
-* **Mock Authentication:** Implemented a mocked entry splash-screen protecting the layouts and mapping a fake user session locally.
+**Bonus: Auth**
+- Added a simple mock login screen to block the dashboard and simulate a real user session.
 
-### ❌ Not Implemented
-
-**6. Testing**
-* **No Automated Testing:** Unit testing (via React Testing Library or Jest), Integration Testing, and End-to-End (E2E) testing (with Cypress/Playwright) were **not implemented** in this application. 
+### What I didn't get to (Not Implemented)
+- **Testing:** I didn't write unit/E2E tests (Jest/Cypress). 
+- **Real-time & i18n:** Skipped WebSockets and multi-language support to focus all my time on the core UI and architecture.
 
 ---
 
-## 🗺 Internal Architecture
-The application cleanly complies with a decoupled API-first data boundary:
-* **Next.js Route Handlers (`src/app/api/...`):** Individual endpoints act as the isolated single source of truth for all external network APIs. 
-* **RTK Query Mappers:** The dashboard application purely queries against local endpoints (`/api/feed`, `/api/trending`) instead of orchestrating exposed keys across the component tree.
+## Tech Stack
+- Next.js (App Router)
+- React 19 & TypeScript
+- Redux Toolkit & RTK Query
+- Tailwind CSS v4
+- Framer Motion & dnd-kit
 
-## 🛠 Tech Stack
-* **Framework:** Next.js 14+ (App Router)
-* **Language:** React 19 & TypeScript
-* **State / Networking:** Redux Toolkit + RTK Query
-* **Design:** Tailwind CSS v4 + Vanilla CSS Layout Tokens
-* **Motion & Drag:** Framer Motion + `@dnd-kit/core`
+## How to run it locally
 
-## ⚡ Getting Started
+1. Install dependencies:
+```bash
+npm install 
+# or pnpm install
+```
 
-1. **Install Dependencies:**
-   ```bash
-   npm install 
-   # or pnpm install
-   ```
+2. Add your API keys. Create a `.env.local` file in the root directory:
+```env
+NEWS_API_KEY=your_newsapi_key_here
+TMDB_API_KEY=your_tmdb_key_here
+```
 
-2. **Environment Variables:**
-   Create a `.env.local` to fuel the live integrations. 
-
-   ```env
-   NEWS_API_KEY=your_newsapi_key
-   TMDB_API_KEY=your_tmdb_key_v3
-   ```
-
-3. **Start Development Server:**
-   ```bash
-   npm run dev
-   # or pnpm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) inside your browser.
-
-- **Live Deployment:** https://luma-board.vercel.app/
-- **Repository:** https://github.com/KshKnsl/LumaBoard
+3. Start the dev server:
+```bash
+npm run dev
+```
+Then visit [http://localhost:3000](http://localhost:3000) in your browser.
