@@ -11,16 +11,3 @@ export function formatRelativeDate(value: string) {
   if (hours < 24) return `${hours}h ago`;
   return `${Math.round(hours / 24)}d ago`;
 }
-
-export function getAccentClasses(accent: string) {
-  switch (accent) {
-    case "coral":
-      return "bg-[rgba(239,141,141,0.14)] text-[var(--accent-coral)]";
-    case "ink":
-      return "bg-[var(--surface-contrast)] text-[var(--app-bg)]";
-    case "lilac":
-      return "bg-[rgba(147,171,239,0.1)] text-[var(--text-secondary)]";
-    default:
-      return "bg-[rgba(147,171,239,0.15)] text-[var(--accent-blue)]";
-  }
-}

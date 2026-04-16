@@ -20,15 +20,15 @@ export function AuthEntryCard({ mode }: { mode: "login" | "signup" }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="panel-surface w-full max-w-[760px] rounded-[40px] p-8">
+      <div className="panel-surface w-full max-w-190 rounded-[40px] p-8">
         <div className="mb-6 flex items-center gap-3">
           <Image src="/logo-mark.svg" alt="LumaBoard" width={44} height={44} priority />
           <div>
-            <div className="text-sm font-semibold tracking-[0.04em] text-[var(--text-primary)]">LumaBoard</div>
-            <div className="text-xs uppercase tracking-[0.18em] text-[var(--text-muted)]">Personalized dashboard</div>
+            <div className="text-sm font-semibold tracking-[0.04em] text-foreground">LumaBoard</div>
+            <div className="text-xs uppercase tracking-[0.18em] text-(--text-muted)">Personalized dashboard</div>
           </div>
         </div>
-        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-(--text-muted)">
           {isSignup ? "Create profile" : "Welcome back"}
         </div>
         <h1 className="mt-3 font-(--font-heading) text-4xl tracking-[-0.05em]">
@@ -44,7 +44,7 @@ export function AuthEntryCard({ mode }: { mode: "login" | "signup" }) {
               key={field.key}
               className="soft-card rounded-[28px] p-5 text-sm sm:col-span-1"
             >
-              <div className="mb-2 text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">
+              <div className="mb-2 text-xs uppercase tracking-[0.16em] text-(--text-muted)">
                 {field.label}
               </div>
               <input
@@ -55,7 +55,7 @@ export function AuthEntryCard({ mode }: { mode: "login" | "signup" }) {
                     [field.key]: event.target.value,
                   }))
                 }
-                className="w-full bg-transparent text-[var(--text-primary)] outline-none"
+                className="w-full bg-transparent text-foreground outline-none"
               />
             </label>
           ))}
@@ -67,13 +67,13 @@ export function AuthEntryCard({ mode }: { mode: "login" | "signup" }) {
               dispatch(signIn(form));
               router.push("/dashboard");
             }}
-            className="rounded-full bg-[var(--surface-contrast)] px-5 py-3 text-sm font-semibold text-[var(--app-bg)]"
+            className="rounded-full bg-(--surface-contrast) px-5 py-3 text-sm font-semibold text-background"
           >
             {isSignup ? "Create account" : "Sign in"}
           </button>
           <Link
             href={isSignup ? "/login" : "/signup"}
-            className="text-sm font-semibold text-[var(--text-primary)]"
+            className="text-sm font-semibold text-foreground"
           >
             {isSignup ? "Already have an account?" : "Need an account?"}
           </Link>

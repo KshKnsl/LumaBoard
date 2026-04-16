@@ -37,7 +37,7 @@ export default function RootLayout({
       className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[var(--app-bg)] text-[var(--text-primary)]">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
