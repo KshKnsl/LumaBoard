@@ -1,10 +1,10 @@
 "use client";
 
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { AuthEntryCard } from "@/components/dashboard/auth-entry-card";
-import { DashboardClient } from "@/components/dashboard/dashboard-client";
-import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { AuthEntryCard } from "@/components/auth-entry-card";
+import { DashboardClient } from "@/components/dashboard-client";
+import { DashboardShell } from "@/components/dashboard-shell";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { signOut } from "@/store/slices/auth-slice";
 import { setFeedPage } from "@/store/slices/feed-slice";
@@ -45,18 +45,17 @@ export default function DashboardSectionPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const deferredSearch = useDeferredValue(searchInput.trim());
 
-  const activeSection = useMemo(() => pathToSection(pathname), [pathname]);
+  const activeSection = pathToSection(pathname);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
-      setSearchQuery(deferredSearch);
+      setSearchQuery(searchInput.trim());
       dispatch(setFeedPage(1));
     }, 250);
 
     return () => window.clearTimeout(timeout);
-  }, [deferredSearch, dispatch]);
+  }, [searchInput, dispatch]);
 
   if (!isAuthenticated || !profile) {
     return <AuthEntryCard mode="login" />;
